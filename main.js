@@ -53,14 +53,13 @@ window.onlaod = function () {
     }
 
     //adding string through style to list item
-    function boxchecked(event) {
+    function boxChecked(event) {
         const element = event.target;
         if(element.type === "checkbox") {
             element.parentNode.style.textDecoration = "line-through";
-            todoList = JSON.parse(localstorage.getItem("todoList));
+            todoList = JSON.parse(localstorage.getItem("todoList"));
             todoList[element.id.split('-')[1] - 1].checked = element.checked.toString();
             localStorage.setItem("todoList", JSON.stringify(todoList));
-        
         }
     }
 
