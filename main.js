@@ -1,26 +1,28 @@
-window.onlaod = function () {
+window.onload = function () {
     //variables
     let form = document.getElementById("form");
     let input = document.getElementById("input");
     let btn = document.getElementById("btn");
-    let list = docment.getElementById("list");
+    let list = document.getElementById("list");
     let btnClr = document.getElementById("btnClr");
     let id = 1;
+    // listItem = {item: "todo item", checked: false}
     let liItem = "";
     let todoList = [];
     //button event listner
-    btn.addEventListener("Click", addTodoitem);
+    btn.addEventListener("click", addTodoItem);
 
     //list event listener
-    list.addEventListener("Click", boxChecked);
+    list.addEventListener("click", boxChecked);
 
     //clear list event listner
-    btnClr.addEventListener("Click", clearList);
+    btnClr.addEventListener("click", clearList);
 
     //input.addEventListner("keydown", addTodoItem);
 
     if (localStorage.length < 0) {
         btnClr.style.display = "none"; // hides the clear button
+        console.log("button");
     }
 
     //checking local storage has data
@@ -29,20 +31,20 @@ window.onlaod = function () {
     }
     
     //add todo item to list
-    function addTodoItem(){
+    function addTodoItem() {
         if(input.value === "") {
             alert("You must enter some value");
         }
 
         else {
-            if(list.style.border.top === "") { //usually use 3 equals
+            if(list.style.borderTop === "") { //usually use 3 equals
                 console.log("here")
                 list.style.borderTop = "2px solid white";
                 btnClr.style.display = "inline";
             }
 
             let text = input.value;
-            let item = `<li id="li-${id}">${text}<input id="box-${id} class="checkboxes" type="checkbox"></li>`;
+            let item = `<li id="li-${id}">${text}<input id="box-${id}" class="checkboxes" type="checkbox"></li>`;
             list.insertAdjacentHTML('beforeend', item);
             liItem = {item: text, checked: false};
             todoList.push(liItem);
@@ -65,11 +67,11 @@ window.onlaod = function () {
 
     //adding data to local storage
     function addToLocalStorage(){
-        if (typeof (storage) !== "undefined"){
+        if (typeof (Storage) !== "undefined"){
             localStorage.setItem("todoList", JSON.stringify(todoList));
         }
         else{
-            alert("borwser doesnt support local storage");
+            alert("borwser doesn't support local storage");
         }
     }
 
